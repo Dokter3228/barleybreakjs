@@ -9,11 +9,12 @@ module.exports = {
     static: "./dist",
     compress: true,
     port: 3000,
+    hot: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
       title: "Barley-Break",
-      template: "./src/index.html",
+      template: "./src/template.html",
     }),
   ],
   output: {
@@ -27,6 +28,7 @@ module.exports = {
         test: /\.(css|scss)$/i,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
+
       {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: "asset/resource",
@@ -45,6 +47,10 @@ module.exports = {
             presets: ["@babel/preset-env"],
           },
         },
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
       },
     ],
   },
